@@ -1,14 +1,18 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace MusicAndSocial.Models
 {
     public class Genre
     {
         [BsonId]
-        public int GenreId { get; set; }
-        [BsonElement("")]
+        public ObjectId GenreId { get; set; }
+
+        [BsonElement("name")]
         public string GenreName { get; set; }
-        public int MyProperty { get; set; }
+
+        [BsonElement("index_nopopularity")]
+        public int IndexNopopularity { get; set; }
 
     }
 }
