@@ -13,6 +13,7 @@ using Database = MusicAndSocial.Databases;
 using Owin;
 using System;
 using System.Web.Http;
+using MusicAndSocial.Provider;
 
 [assembly: OwinStartup(typeof(MusicAndSocial.Startup))]
 namespace MusicAndSocial
@@ -62,7 +63,11 @@ namespace MusicAndSocial
         public void Configuration(IAppBuilder app)
         {
             HttpConfiguration config = new HttpConfiguration();
+ 
+            ConfigureOAuth(app);
+ 
             WebApiConfig.Register(config);
+            app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             app.UseWebApi(config);
         }
 
@@ -73,7 +78,7 @@ namespace MusicAndSocial
                 AllowInsecureHttp = true,
                 TokenEndpointPath = new PathString("/token"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
-                //Provider = new SimpleAuthorizationServerProvider()
+                Provider = new AuthorizationServerProvider()
             };
 
             // Token Generation

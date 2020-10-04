@@ -30,5 +30,8 @@ namespace MusicAndSocial.Models
 
         [BsonElement("genres")]
         public List<Genre> Genres { get; set; }
+
+        [BsonElement("id")]
+        public Guid Id { get; set; }
     }
 }

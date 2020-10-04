@@ -2,7 +2,9 @@
 {
     public enum MongoDBCode
     {
+        Failed = 0,
         Success = 1,
-        Failed = 0
+        DataIsPresent = 2,
+        DataNotPresent = 3
     }
 }

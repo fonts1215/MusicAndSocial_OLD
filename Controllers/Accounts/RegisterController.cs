@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MusicAndSocial.Api.Model.Response;
+using MusicAndSocial.Common.Utils;
 using MusicAndSocial.Databases;
 using MusicAndSocial.Models;
+using System;
 using System.Net.Http;
 
 namespace MusicAndSocial.Controllers.Accounts
@@ -28,15 +29,18 @@ namespace MusicAndSocial.Controllers.Accounts
                 && !string.IsNullOrEmpty(user.Name)
                 && !string.IsNullOrEmpty(user.Surname))
             {
-                db.InsertUser(user);
-                return new HttpResponseMessage { StatusCode = System.Net.HttpStatusCode.OK};
+                user.Id = Guid.NewGuid();
+                var result = db.InsertUser(user);
+                if(result == MongoDBCode.Success)
+                    return new HttpResponseMessage { StatusCode = System.Net.HttpStatusCode.OK};
+                if(result == MongoDBCode.DataIsPresent)
+                    return new HttpResponseMessage { StatusCode = System.Net.HttpStatusCode.Conflict };
+                else
+                    return new HttpResponseMessage { StatusCode = System.Net.HttpStatusCode.BadRequest };
             }
             else
             {
-                return new HttpResponseMessage
-                {
-                    StatusCode = System.Net.HttpStatusCode.BadRequest
-                };
+                return new HttpResponseMessage{ StatusCode = System.Net.HttpStatusCode.BadRequest };
             }
         }
     }
