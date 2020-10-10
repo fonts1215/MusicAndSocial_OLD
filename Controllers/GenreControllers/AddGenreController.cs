@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using MusicAndSocial.Api.Model.Request.GenreControllers;
 
-namespace MusicAndSocial.Controllers.Genre
+namespace MusicAndSocial.Controllers.GenreControllers
 {
     [Route("api/genres/add")]
     [ApiController]

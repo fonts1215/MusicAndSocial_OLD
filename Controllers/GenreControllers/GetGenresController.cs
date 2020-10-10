@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using MusicAndSocial.Databases;
 using Model = MusicAndSocial.Models;
 
-namespace MusicAndSocial.Controllers.Genre
+namespace MusicAndSocial.Controllers.GenreControllers
 {
     [Route("api/genres")]
     [ApiController]

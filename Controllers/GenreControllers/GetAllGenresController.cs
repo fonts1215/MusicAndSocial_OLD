@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using MusicAndSocial.Databases;
 using System.Threading.Tasks;
 
-namespace MusicAndSocial.Controllers.Genre
+namespace MusicAndSocial.Controllers.GenreControllers
 {
     [Route("api/genres/all")]
     [ApiController]
